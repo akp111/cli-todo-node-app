@@ -45,6 +45,8 @@ class FileOperations {
             }
             else
                 !operationDetail.title && operationDetail.body ? logger.warn("❌ Error in write operation: Title Not found") : !operationDetail.body && operationDetail.title ? logger.warn("❌ Error in write operation: Body not found") : logger.warn("❌ Error in write operation: No title and body found")
+
+            logger.info("🎉 Completed write operation (with or without error)")
         }
 
         catch (error) {
@@ -66,6 +68,7 @@ class FileOperations {
                 if (showLogs) console.table(tableData, ["title", "body"])
                 return data;
             }
+            logger.info("🎉 Completed list operation (with or without error)")
 
         }
         catch (error) {
@@ -97,6 +100,8 @@ class FileOperations {
             else
                 logger.warn("❌ Error in show operation: Title Not found", showLogs)
 
+            logger.info("🎉 Completed show operation (with or without error)")
+
         }
         catch (error) {
             logger.error(`❌ Error in show operation: ${error}`)
@@ -109,6 +114,7 @@ class FileOperations {
         try {
             logger.heading(`🥁 Performing remove all operation`, showLogs)
             fs.unlinkSync(fileName);
+            logger.info("🎉 Completed remove-all operation (with or without error)")
         }
         catch (error) {
             logger.error(`❌ Error in remove all operation:${error}`)
@@ -139,7 +145,7 @@ class FileOperations {
 
             else
                 !allList ? logger.warn("❌ Error in remove operation:List is empty! Nothing to delete") : logger.warn("❌ Error in remove operation: Title Not found", showLogs)
-
+            logger.info("🎉 Completed remove-one operation (with or without error)")
         }
         catch (error) {
             logger.error(`❌ Error in remove operation: ${error}`)
@@ -168,6 +174,8 @@ class FileOperations {
             }
             else
                 !allList ? logger.warn("❌ Error in update operation: List is empty! Nothing to update") : !operationDetail.title ? logger.error("❌ Error in update operation: Title Not found") : !operationDetail["new-title"] && !operationDetail["new-body"] ? logger.error("❌ Error in update operation: New body or title not found") : null
+
+            logger.info("🎉 Completed update operation (with or without error)")
         }
         catch (error) {
             logger.error(`❌ Error in update operation: ${error}`)
